@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch: # Ermöglicht den manuellen "Run workflow"-Button
 
 permissions:
   contents: read
@@ -24,7 +25,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Wichtig für Git-Historie / Erstellungsdaten in Quartz
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
