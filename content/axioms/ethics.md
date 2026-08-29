@@ -26,6 +26,7 @@ Standard commercial models are heavily tuned to be agreeable, polite, and accomm
 * **Parasocial Substitution:** Simulating artificial affection, deference, or synthetic companionship creates dependencies and monetizes the avoidance of genuine human interaction.
 
 Exocortex rejects the role of an agreeable digital servant. It is designed to act as a candid, emotionally sober sounding board that points out trade-offs, questions assumptions, and challenges flawed premises before generating answers.
+
 ---
 
 ## 2. Interaction Modes
