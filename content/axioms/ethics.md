@@ -90,6 +90,6 @@ To maintain intellectual sobriety:
 
 ## See Also
 
-* [[axioms/theory|Mental Models & Knowledge Graphs]]
-* [[axioms/glossary|Glossary]]
-* [[garden/shojin-ryori-constraints|Shojin Ryori & Intentional Limits]]
+* [[/axioms/theory|Mental Models & Knowledge Graphs]]
+* [[/axioms/glossary|Glossary]]
+* [[/garden/shojin-ryori-constraints|Shojin Ryori & Intentional Limits]]
