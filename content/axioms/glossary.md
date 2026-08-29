@@ -1,147 +1,97 @@
-# Epistemic Reclaiming: A System-Theoretic Glossary
+---
+title: "Glossary & Conceptual Foundations"
+description: Clear definitions of core concepts from systems theory, knowledge graphs, and software architecture used in Exocortex.
+tags:
+  - glossary
+  - systems-thinking
+  - cybernetics
+  - architecture
+  - knowledge-graphs
+---
 
-> *"Concepts are instruments of cognition. When their definitions drift into vagueness, the system loses its epistemic resolution."*
+> *"Clear concepts are the foundation of effective thinking. When definitions drift into ambiguity, systems lose their clarity."*
 
-The Exocortex architecture deliberately adopts terminology from classical mechanics, non-linear dynamics, differential geometry, and second-order cybernetics. These terms are **not decorative metaphors or management buzzwords**, but explicit mathematical, structural, and computational constraints.
+Exocortex draws practical concepts from systems theory, cybernetics, information theory, and software architecture. This glossary defines these terms plainly, explains their conceptual roots, and outlines their concrete technical role within the system.
 
 ---
 
-### 1. Phase Space ($\Phi$)
-
-* **Pop-Science Dilution:** A vague "mental space", "creative vibe", or conversational room to brainstorm.
-* **Formal Grounding:** The $d$-dimensional differential manifold $\Phi \subseteq \mathbb{R}^d$ encompassing every kinematically admissible state of a dynamical system, where any instantaneous state is defined as a unique coordinate vector $\mathbf{x} \in \Phi$.
-* **Exocortex Implementation:** The 1024-dimensional latent embedding manifold parameterized by `bge-m3`. Prompts, active graph nodes, and operational context exist as discrete coordinate vectors $\mathbf{v} \in \mathbb{R}^{1024}$.
+### 1. Vector Space & Embeddings
+* **Conceptual Origin:** Linear algebra and natural language processing. Concepts, words, or documents are mapped as dense numerical coordinate vectors ($\mathbf{v} \in \mathbb{R}^d$) in a continuous geometric space, where distance correlates with semantic relationship.
+* **Role in Exocortex:** Prompts, active graph nodes, and search queries are embedded using local embedding models (such as `bge-m3` in a 1024-dimensional space). This allows the system to find conceptually related notes even when phrasing differs.
 
 ---
 
-### 2. Resonance ($\text{sim}(\mathbf{u}, \mathbf{v})$)
-
-* **Pop-Science Dilution:** Emotional alignment, spiritual harmony, or "being on the same wavelength".
-* **Formal Grounding:** Maximal power transfer between coupled harmonic oscillators operating at identical eigenfrequencies; mathematically formalized on the unit hypersphere $S^{d-1}$ as the normalized inner product (cosine similarity) between directional unit vectors:
-
-$$\text{sim}(\mathbf{u}, \mathbf{v}) = \cos(\theta) = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|_2 \, \|\mathbf{v}\|_2}$$
-
-* **Exocortex Implementation:** Vector projection between the operator's input vector and topological node embeddings. A cosine threshold ($\tau \ge 0.50$) discriminates active semantic gravitation from the quiescent background baseline.
+### 2. Semantic Similarity
+* **Conceptual Origin:** Vector geometry. The normalized dot product (cosine similarity) measures the directional alignment between two vectors on a scale from $-1.0$ to $+1.0$:
+  $$\text{sim}(\mathbf{u}, \mathbf{v}) = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|_2 \, \|\mathbf{v}\|_2}$$
+* **Role in Exocortex:** Used for two core mechanisms:
+  1. *Retrieval:* Identifying the most relevant nodes in the knowledge graph for a given user prompt.
+  2. *Telemetry:* Calculating the **Echo Score** ($\rho_{\text{echo}}$) between user prompt and model response to detect conversational mirroring or topic drift.
 
 ---
 
-### 3. Attractor Basin & Potential Well (`PW_xxx`)
+> **A Note on Node Taxonomy:** The Exocortex graph uses naming conventions borrowed from dynamical systems (`PotentialWell`, `BoundaryConstraint`, `TrajectoryOperator`, `PhaseSpaceTrace`) as pragmatic design metaphors to structure knowledge and memory.
 
-* **Pop-Science Dilution:** The "Law of Attraction", manifesting intent, or metaphysical gravity.
-* **Formal Grounding:** An invariant limit set $\mathcal{A} \subset \Phi$ of a dissipative dynamical system toward which trajectories originating within an open neighborhood (the basin of attraction $\mathcal{B}(\mathcal{A})$) asymptotically converge as $t \to \infty$:
+### 3. Core Concepts (`PotentialWell` / `PW`)
 
-$$\lim_{t \to \infty} \text{dist}\left(\Phi(t, \mathbf{x}_0), \mathcal{A}\right) = 0 \quad \forall \mathbf{x}_0 \in \mathcal{B}(\mathcal{A})$$
-
-* **Exocortex Implementation:** Cyan attractor nodes (`PotentialWell`) representing stabilized first-principles knowledge. They bend the model's inference path toward verified conceptual equilibria.
+* **Conceptual Origin:** Systems theory and physics (potential wells / attractor basins). Represents stable equilibrium states toward which dynamic processes naturally settle.
+* **Role in Exocortex:** Foundational domain definitions and core architectural principles in the knowledge graph. These nodes anchor the model's reasoning in verified domain knowledge (e.g., *Ingredient Purity* in culinary design, or *Simplicity over Cleverness* in software architecture).
 
 ---
 
-### 4. Boundary Constraint (`BC_xxx`)
+### 4. Boundary Constraints (`BoundaryConstraint` / `BC`)
 
-* **Pop-Science Dilution:** Interpersonal boundaries, comfort zones, or gentle moral guardrails.
-* **Formal Grounding:** Inviolable differential or topological prohibitions that restrict the admissible phase-space volume to a bounded subspace $\Omega \subset \mathbb{R}^d$, strictly enforcing zero probability density for forbidden states:
-
-$$\forall \mathbf{x} \notin \Omega: P(\mathbf{x}) = 0$$
-
-* **Exocortex Implementation:** Red invariant nodes (`BoundaryConstraint`, e.g., `BC_001: Epistemic_Rigor`). They enforce Popperian falsification and prevent sycophantic drift by invalidating broken premises before state execution.
+* **Conceptual Origin:** Constraint satisfaction, invariant design, and Karl Popper’s criterion of demarcation (a robust system or theory is defined by what it strictly prohibits).
+* **Role in Exocortex:** Invariant guardrails that explicitly forbid unwanted states or common failure modes (e.g., mixing database queries with network I/O, using out-of-season produce, or blindly flattering flawed user assumptions). The reasoning space inside these boundaries remains completely open.
 
 ---
 
-### 5. Trajectory Operator (`TO_xxx`)
+### 5. Action Guidelines (`TrajectoryOperator` / `TO`)
 
-* **Pop-Science Dilution:** A subjective "life path", destiny, or vague narrative arc.
-* **Formal Grounding:** A deterministic or stochastic mapping $T: \Phi \to \Phi$ governing the discrete state transitions along a phase-space path $\gamma = \{\mathbf{x}_0, \mathbf{x}_1, \dots, \mathbf{x}_k\}$:
-
-$$\mathbf{x}_{k+1} = T(\mathbf{x}_k)$$
-
-* **Exocortex Implementation:** Purple transition rules (`TrajectoryOperator`) that govern structural refactoring, abstraction shifts, and decoupling pipelines across bounded contexts.
+* **Conceptual Origin:** State-transition systems and process workflows. Operators govern how a system moves from an initial state toward a desired target state.
+* **Role in Exocortex:** Concrete transformation patterns and refactoring heuristics stored in the graph (e.g., *Defensive Design* patterns, extraction of interfaces, or gentle cooking techniques).
 
 ---
 
-### 6. Second-Order Cybernetics & The Observer Constraint
+### 6. Working States (`PhaseSpaceTrace` / `PST`)
 
-* **Pop-Science Dilution:** "Reality is purely subjective" or "perception creates truth".
-* **Formal Grounding:** Heinz von Foerster’s recursive circular epistemology, where the observing system is strictly embedded within the observed domain:
-
-$$\mathcal{S}_{n+1} = \mathcal{O}(\mathcal{S}_n, \mathcal{I})$$
-
-* **Exocortex Implementation:** The recognition that prompt construction actively perturbs the latent state space. The system eliminates sycophantic feedback loops by serving as an independent epistemic mirror rather than an agreeable echo chamber.
+* **Conceptual Origin:** State tracing and execution history in distributed systems.
+* **Role in Exocortex:** Ephemeral graph nodes capturing active task contexts, temporary hypotheses, review checkpoints, or runtime notes. Unlike permanent boundary constraints, traces are designed to be updated, archived, or pruned as tasks finish.
 
 ---
 
-### 7. Autopoiesis & Operational Closure
-
-* **Pop-Science Dilution:** Self-care, natural wellness, or unstructured organic growth.
-* **Formal Grounding:** Maturana and Varela’s definition of autonomous machines that recursively regenerate the topological network of processes that produced them, maintaining structural boundaries under environmental perturbation.
-* **Exocortex Implementation:** Memory lifecycle decoupling. Base cognitive blueprints remain sterile (`topologies/base/`), while transient RAM mutations are crystallized into immutable snapshot artifacts (`/freeze`) and auto-projected into the Obsidian Canvas.
+### 7. Second-Order Cybernetics & The Observer Effect
+* **Conceptual Origin:** Heinz von Foerster and Margaret Mead. The study of circular, recursive systems where the observer is an active participant in the observed system rather than a detached outsider.
+* **Role in Exocortex:** Recognizing that prompt phrasing directly biases and steers model output. Because standard language models naturally echo the user's implicit biases (*sycophancy*), Exocortex uses explicit constraints to provide an independent, critical perspective rather than an uncritical echo.
 
 ---
 
-### 8. Algorithmic Information Theory & Minimum Description Length (MDL)
-
-* **Pop-Science Dilution:** "Messiness", disorder, or bad vibes in software.
-* **Formal Grounding:** The theoretical shortest program $p$ on a universal Turing machine $U$ capable of reproducing a discrete string or system state $s$:
-
-$$K(s) = \min_{p} \{ |p| : U(p) = s \}$$
-
-* **Exocortex Implementation:** While absolute Kolmogorov complexity $K(s)$ is theoretically incomputable due to the Halting Problem, the Exocortex Rehydration Engine (`core/compiler.py`) implements the **Minimum Description Length (MDL)** principle as an operational bound. It condenses high-dimensional topological graphs into token-minimal Markdown attractor prompts ($< 350$ tokens), discarding conversational boilerplate and defensive code bloat.
+### 8. *Via Negativa* (Constraint-First Design)
+* **Conceptual Origin:** Epistemology and engineering (Nassim Taleb, Karl Popper). Improving systems by removing defects, bloat, and invalid states, rather than adding more procedural instructions.
+* **Role in Exocortex:** System prompts and graph topologies focus on what *not* to do (hard boundary walls), giving the model maximum creative freedom to explore valid solutions inside those boundaries without micro-managing its step-by-step reasoning.
 
 ---
 
-### 9. *Via Negativa* (Popperian Invariance)
-
-* **Pop-Science Dilution:** Cynicism, pessimism, or restrictive micromanagement.
-* **Formal Grounding:** Defining systems exclusively by what is prohibited rather than what is prescribed. Following Karl Popper, a theory's empirical content increases with the severity of its prohibitions.
-* **Exocortex Implementation:** The Exocortex does not prescribe the operator's reasoning path (*Via Positiva* nudging); it exclusively establishes hard outer invariant walls (*Via Negativa* bounds), maximizing internal degrees of freedom.
-
----
-
-### 10. Teleological Asymmetry & The Sovereign Veto
-
-* **Pop-Science Dilution:** The machine having "intentions", "desires", or shared moral responsibility.
-* **Formal Grounding:** The structural bifurcation between syntactic verification (which is computational) and final causality / purpose / *telos* (which is strictly non-computable and human).
-* **Exocortex Implementation:** The operator retains absolute sovereign veto power, aesthetic taste, and directional authority. The machine remains an agency-amplifying substrate, permanently subordinate to human pruning and re-weighting.
+### 9. Purpose vs. Computation (Human Intent & Machine Limits)
+* **Conceptual Origin:** Philosophy of mind and cybernetics. The distinction between mechanical/algorithmic processing (efficient cause) and ultimate purpose, values, and intent (*telos*).
+* **Role in Exocortex:** The fundamental division of responsibility between human and machine:
+  * *Delegable:* Syntax checking, edge-case detection, graph retrieval, code refactoring options, and structural auditing.
+  * *Non-Delegable:* Setting direction, evaluating trade-offs, making final decisions, aesthetic taste, and ethical responsibility.
 
 ---
 
-### 11. Topological Alignment vs. Echo-Sycophancy
-
-* **Pop-Science Dilution:** Making the model agreeable, flattering, obedient, or mirroring the operator's conversational tone and biases.
-* **Formal Grounding:** The directed convergence of the generated response vector $\mathbf{v}_R$ toward the invariant target attractor state $\mathcal{A}_{\text{PW}}$ while strictly satisfying all boundary invariant constraints ($\models$):
-
-$$\mathbf{v}_R \to \mathcal{A}_{\text{PW}} \quad \land \quad \mathbf{v}_R \models \mathbf{BC}$$
-
-* **Exocortex Implementation:** Epistemic Alignment does **not** maximize bilateral prompt-response similarity ($\cos(\mathbf{v}_P, \mathbf{v}_R) \to 1$, which represents the mathematical formalization of sycophantic echoing and confirmation bias). Instead, it triangulates the trajectory against the topological graph: the response must satisfy active boundary constraints (`BC_001`–`BC_006`) and project cleanly onto verified potential wells (`PW_xxx`).
+### 10. Requisite Variety & Anti-Deskilling
+* **Conceptual Origin:** W. Ross Ashby's *Law of Requisite Variety* ("Only variety can absorb variety"). An operator must maintain sufficient internal problem-solving capacity to understand and regulate the system they oversee.
+* **Role in Exocortex:** Actively preventing cognitive atrophy (blind copy-pasting). The engine explains trade-offs, highlights architectural flaws, and encourages surgical, incremental edits rather than dumping opaque, unreviewed blocks of code.
 
 ---
 
-### 12. Thermodynamic Context Economy & Attention Entropy
-
-* **Pop-Science Dilution:** "Just give the AI infinite context / 2M token windows so it never forgets anything."
-* **Formal Grounding:** Quadratic prefill compute dissipation $\mathcal{O}(N^2)$ coupled with linear key-value cache memory expansion $\mathcal{O}(N)$ and attention entropy diffusion. The signal-to-noise ratio in high-dimensional attention matrices degrades as irrelevant tokens disperse the probability mass:
-
-$$\lim_{N \to \infty} H\left(P_{\text{attn}}(\mathbf{x}_i)\right) \to H_{\text{max}} \quad \implies \quad \text{Attention Drift}$$
-
-* **Exocortex Implementation:** Thermodynamic efficiency in cognition. Instead of dragging monolithic context windows across turns, vector resonance (`bge-m3`) projects the prompt onto the top-$k$ active manifold attractors. Injection of micro-substrates ($< 1000$ tokens) into local $12\text{B}$ models achieves maximum argument density with minimal compute and zero epistemic leakage.
+### 11. Context Economy
+* **Conceptual Origin:** Information theory and cognitive load management. The trade-off between massive context windows and signal-to-noise ratio.
+* **Role in Exocortex:** Instead of passing entire chat histories into context, Exocortex uses hybrid retrieval (vector search + 1-hop graph traversal) to assemble compact, focused context frames ($< 400$ tokens). This keeps latency low, prevents attention degradation ("lost in the middle"), and enables sharp reasoning on local $12\text{B}$ parameter models.
 
 ---
 
-### 13. Structural Coupling & Anti-Deskilling Invariant
-
-* **Pop-Science Dilution:** "Vibe coding", "AI autopilot", or total cognitive outsourcing.
-* **Formal Grounding:** Humberto Maturana’s reciprocal perturbation of operationally closed cognitive systems without structural dissolution. The operator’s internal variety $H(\text{Operator})$ must strictly match or exceed system variety to satisfy Ashby’s Law of Requisite Variety:
-
-$$H(\text{Operator}) \ge H(\text{Substrate}) - H(\text{Guards})$$
-
-* **Exocortex Implementation:** Anti-Deskilling Invariant (`BC_001`). Rejection of passive "script-dumping". The interaction mandates surgical differential navigation: the operator actively localizes failure boundaries and state mutations in the codebase, using the model as a resonant epistemic mirror rather than an unverified code generator.
-
----
-
-### 14. Closed-Loop Field Imprinting & Dynamic Vector Genesis
-
-* **Pop-Science Dilution:** "The AI learning on the fly" or "updating its internal memory".
-* **Formal Grounding:** Endogenous discrete state genesis on a directed topological graph $G_{t+1} = G_t \cup \{v_{\text{new}}, \mathcal{E}_{\text{new}}\}$, accompanied by real-time isometric latent manifold projection:
-
-$$\mathbf{e}(v_{\text{new}}) = f_{\text{embed}}(\text{label} \circ \text{payload}) \in \mathbb{R}^{1024}$$
-
-* **Exocortex Implementation:** FastMCP tool execution (`exocortex_imprint_field`). 1-shot deterministic node instantiation (`PotentialWell`, `TrajectoryOperator`, etc.), on-the-fly `bge-m3` vectorization, topological tensor-link wiring, and immediate live synchronization with the Obsidian Canvas without requiring server restarts.
+### 12. Dynamic Graph Maintenance
+* **Conceptual Origin:** Graph databases and dynamic knowledge management.
+* **Role in Exocortex:** Managing memory explicitly via structured tool calls (`imprint`, `mutate`, `prune`). The model can store new domain rules, adjust connection weights, or prune outdated working notes directly inside the JSON-backed knowledge graph, with real-time visual synchronization to an Obsidian `.canvas` file.

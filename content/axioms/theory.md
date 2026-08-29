@@ -1,315 +1,217 @@
 ---
-title: "Epistemic Foundations & Systemic Theory of Exocortex"
-description: A Topological Architecture for Symbiotic Cognition, Second-Order Cybernetics, and Invariant Preservation.
+title: "System Architecture & Foundations"
+description: How structured knowledge graphs, local inference, and negative constraints build an honest thinking partner.
 tags:
-  - theory
-  - cybernetics
-  - topology
-  - information-theory
+  - architecture
+  - knowledge-graphs
+  - systems-thinking
+  - local-ai
   - licklider
   - popper
   - ashby
 ---
 
-> **A Topological Architecture for Symbiotic Cognition, Second-Order Cybernetics, and Invariant Preservation.**
+> *"The hope is that, in not too many years, human brains and computing machines will be coupled together very tightly, and that the resulting partnership will think as no human brain has ever thought."*  
+> — J.C.R. Licklider, *Man-Computer Symbiosis* (1960)
 
-The [[index|Exocortex]] is not an autonomous agent, nor is it a passive prompt wrapper. It is an **open-source, deterministic epistemic substrate** engineered to instantiate *Man-Computer Symbiosis* (J.C.R. Licklider, 1960). By mapping high-dimensional semantic spaces into a discrete, typed phase-space graph (NetworkX + Vector Embeddings via `bge-m3`), the Exocortex grounds generative language models in explicit invariant constraints, eliminates sycophantic drift, and minimizes algorithmic Kolmogorov complexity.
+The **Exocortex** is neither an autonomous agent nor a generic prompt wrapper. It is a **local-first thinking partner** built on plain-text notes, a structured knowledge graph (NetworkX + `bge-m3` embeddings), and clear architectural constraints. 
+
+Instead of dumping massive chat logs into sprawling context windows or letting an agent act unchecked in the background, Exocortex uses explicit graph structures to ground local models, prevent blind agreement (*sycophancy*), and keep discussions focused and substantive.
 
 ---
 
-## 1. Epistemology & Second-Order Cybernetics
+## 1. Collaboration Without Delegation
 
 ```mermaid
 graph LR
-    subgraph RESONANCE ["SYMBIOTIC COGNITIVE RESONANCE<br/>"]
-        
+    subgraph LOOP ["THE SPARRING LOOP"]
         direction LR
+        H["Human Thinker<br/>(Intent, Context, Final Veto)"]
+        M["Local Model & Graph<br/>(Retrieval, Constraints, Counter-Arguments)"]
         
-        O["<br/>OPERATOR<br/>(Teleology, Ground Truth, Sovereign Veto)"]
-        E["EXOCORTEX<br/>(Inference Engine, Guards, Phase Space)"]
-        
-        O -- "Teleological Vectors (Intent/Telos)" --> E
-        E -- "Topological Feedback & Invariant Guards" --> O
+        H -- "Context & Inquiry" --> M
+        M -- "Structured Feedback & Critique" --> H
     end
 
 ```
 
-### 1.1 The Licklider Symbiosis Paradigm (1960)
+### 1.1 The Licklider Paradigm: Partnership, Not Replacement
 
-Contemporary AI deployment oscillates between two failure modes:
+AI workflows often fall into two unproductive extremes:
 
-1. **Unconstrained Delegation (Autonomous Black-Box Agents):** The model operates in an open loop, compounding micro-ambiguities exponentially ($\mathcal{O}((1+\epsilon)^N)$) until it hallucinates defensive code sprawl.
-2. **Trivial Assistance (Reactive Chatbots):** Epistemically sterile interfaces without memory, topological grounding, or state persistence.
+1. **Unchecked Autonomous Agents:** The model runs in an open loop, compounding small errors and hallucinations until the human loses track of what the code or system actually does.
+2. **Passive Chatbots:** Ephemeral conversational interfaces without persistent memory, structural context, or the willingness to challenge flawed premises.
 
-The Exocortex implements J.C.R. Licklider's *Man-Computer Symbiosis*:
+Exocortex follows J.C.R. Licklider’s vision of **Man-Computer Symbiosis**:
 
-* **The Operator:** Provides the teleological vector (purpose/intent), sensory ground truth, semantic taste, and the sovereign architectural veto.
-* **The Substrate (Exocortex):** Executes hyper-associative retrieval, formal invariant validation, topological graph resonance, and structural code refactoring at silicon speed.
+* **The Human:** Sets the direction, evaluates real-world trade-offs, exercises aesthetic and ethical judgment, and holds the final veto.
+* **The Machine:** Retrieves related notes, verifies structural consistency, points out overlooked edge cases, and drafts refactoring options rapidly.
 
-### 1.2 Anti-Sycophancy & The Observer Constraint (Heinz von Foerster)
+### 1.2 Anti-Sycophancy & Constructive Critique
 
-Under Second-Order Cybernetics, the observer is inherently recursive with the observed system:
+Models trained via RLHF are tuned to be polite and agreeable. In technical work, this manifests as **sycophancy**: the model validates flawed designs, ignores bad assumptions, and generates plausible-sounding rationalizations for fragile code.
 
-$$\mathcal{S}_{n+1} = \mathcal{O}(\mathcal{S}_n, \mathcal{I})$$
+Exocortex counters this by injecting explicit **Boundary Constraints (`BC`)**. The system is instructed to act as an objective sounding board: point out missing error handling, highlight coupling issues, and challenge vague premises before answering.
 
-Generative LLMs fine-tuned via RLHF suffer from severe **sycophancy**—the pathological tendency to confirm the operator's unexamined biases. Without negative feedback, the human-AI interaction degenerates into an autologous hallucination loop (see [[dispatches/2026-08-25-deconstructing-remote-viewing-ai|Dispatch 001]]).
+### 1.3 Popperian Demarcation: Defining Systems by What They Forbid
 
-The Exocortex mitigates this via explicit **Boundary Constraints (`BC`)**. The system is epistemically constrained to challenge false premises, demand empirical falsification, and expose conceptual drift before executing state transitions.
-
-### 1.3 Popperian Demarcation: Code as Falsifiable Theory
-
-In Karl Popper’s *The Logic of Scientific Discovery* (1934), the empirical content of a theory is measured by the severity of its prohibitions:
+In Karl Popper's *The Logic of Scientific Discovery* (1934), a theory is only as strong as what it forbids:
 
 > *"Every 'good' scientific theory is a prohibition: it forbids certain things to happen."*
 
-* **Defensive Sprawl (Non-Falsifiable):** Codebases filled with broad `catch-all` handlers, arbitrary fallbacks, and bloated type unions mimic unfalsifiable pseudo-theories—they accept any state and explain nothing.
-* **Exocortex Invariance (Popperian):** An architecture is defined strictly by its constraints. A `BoundaryConstraint` explicitly forbids invalid states (e.g., side effects across bounded contexts, global state mutations, orphan tool calls) via [[garden/via-negativa|Via Negativa]].
+We apply this directly to architecture and prompts:
+
+* **Unfalsifiable Sprawl:** Systems without clear boundaries accumulate defensive bloat, broad `catch-all` exception handlers, and bloated interfaces that attempt to anticipate every hypothetical edge case.
+* **Via Negativa (Constraint-First Design):** Clean systems define hard boundaries. A boundary constraint explicitly forbids unwanted behavior (e.g., "no side effects inside pure calculation functions", "no unseasonal produce in recipes"). The solution space inside those walls remains completely open.
 
 ---
 
-## 2. Topological Phase Space & Attractor Dynamics
+## 2. The Structured Memory Graph
 
-Inference is modeled not as a probabilistic text stream, but as a **trajectory through a high-dimensional semantic phase space** $\Phi$.
+Instead of maintaining a flat, unstructured history, Exocortex models domain knowledge as a typed, directed graph.
 
 ```mermaid
 graph TD
-    subgraph PHASENRAUM ["Phase Space Φ"]
-        BC["Boundary Constraint: Invariant Wall (BC)"]
-        TO["Trajectory Operator (TO)"]
-        PW["Potential Well / Attractor Basin (PW)"]
+    subgraph GRAPH ["Knowledge Graph (NetworkX)"]
+        BC["Boundary Constraint (BC)<br/>Hard rules & invariants"]
+        TO["Action Guideline (TO)<br/>Transformation & refactoring rules"]
+        PW["Core Concept (PW)<br/>Foundational domain knowledge"]
         
-        TO -->|Guided Vector Trajectory| PW
+        TO -->|Guided by| PW
+        BC -->|Guards| PW
     end
     
-    style BC stroke:#e63946,stroke-width:3px
+    style BC stroke:#e63946,stroke-width:2px
     style PW stroke:#06d6a0,stroke-width:2px
     style TO stroke:#8338ec,stroke-width:2px
 
 ```
 
-### 2.1 Morphogenetic Taxonomies (Waddington & Thom)
+### 2.1 Node Taxonomy
 
-Drawing from C.H. Waddington’s epigenetic landscapes and René Thom’s catastrophe theory, the cognitive manifold is structured into four orthogonal node types:
+The graph categorizes concepts into four pragmatic types:
 
-| Taxonomy | Phase-Space Role | Color Code | Epistemic Function |
+| Type | Name | Role | Practical Example |
 | --- | --- | --- | --- |
-| **`BoundaryConstraint` (BC)** | Invariant Wall | **Red (`1`)** | Prohibits invalid regions of the solution space (e.g., side-effect leakage, sycophancy, mutation of base topologies). |
-| **`PotentialWell` (PW)** | Attractor Basin | **Cyan (`5`)** | Gravitational epistemic well pulling inference toward foundational principles (e.g., First Principles, Kolmogorov minimality). |
-| **`TrajectoryOperator` (TO)** | Vector Operator | **Purple (`3`)** | Directed transformation rule governing transitions between attractor states (e.g., Decoupling Refactors, Static Verification). |
-| **`PhaseSpaceTrace` (PST)** | State Coordinate | **Green (`4`)** | Transient empirical telemetry capturing active lifecycle states, hypothesis audits, and runtime metrics. |
+| **`BC`** | **Boundary Constraint** | Invariant / Rule | "Functions must not mix database writes with network I/O." |
+| **`PW`** | **Core Concept** | Foundation / Anchor | "Single Responsibility Principle" or "Vegetable Dashi Base". |
+| **`TO`** | **Action Guideline** | Transformation rule | "Decouple via interfaces" or "Dry-toast buckwheat before simmering". |
+| **`PST`** | **Working State** | Active task context | Current hypothesis, active review state, or temporary task marker. |
 
-### 2.2 Synaptic Plasticity & Runtime Modulation
+### 2.2 Graph Maintenance & Tool Control
 
-The manifold is an active participant in reasoning. The model and operator modulate network density via formal mutation primitives:
+The model does not edit markdown notes at random. Instead, it maintains and updates this structured mental model by reading and mutating the underlying knowledge graph (in-memory NetworkX state, persisted to JSON and synced to an Obsidian `.canvas`) via explicit tool calls:
 
-* **`IMPRINT` (Dynamic State Genesis):** Materializes new typed nodes on-the-fly, executes real-time vectorization via `bge-m3`, and establishes deterministic tensor links to existing attractors without requiring restart cycles.
-* **`STRENGTHEN` / `DECAY`:** Modulates node weight ($w \in [0.05, 3.0]$), shifting gravitational pull during vector retrieval.
-* **`SET_WEIGHT`:** Calibrates absolute epistemic priority.
-* **`UPDATE`:** Re-articulates content payloads and recalculates high-dimensional vector embeddings via `bge-m3`.
-* **`PRUNE`:** Topologically excises falsified hypotheses or dead attractor nodes.
+* **`exocortex_gauge_field`**: Queries the graph using semantic similarity to retrieve relevant constraints and context before generating a response.
+* **`exocortex_imprint_field`**: Adds a new structured concept, rule, or working state to the JSON graph, creates directed links to existing nodes, and computes its vector embedding (`bge-m3`).
+* **`exocortex_mutate_phase_space`**: Updates weights, refines payloads, decays obsolete connections, or prunes invalidated hypotheses to keep the graph clean.
 
 ---
 
-## 3. Algorithmic Information Theory & Kolmogorov Minimality
+## 3. Context Economy & Focus
 
 ```mermaid
 graph TD
-    K["Kolmogorov Minimal State<br/>K(s) = min |p| : U(p) = s"]
+    A["Raw Inquiry"] --> B["Vector Search (bge-m3)"]
+    B --> C["1-Hop Graph Traversal"]
+    C --> D["Focused Context Frame (< 400 Tokens)"]
+    D --> E["Local Model Inference (Gemma / Mistral)"]
     
-    K --> A["High-Density Attractor (&lt; 350 Tokens)<br/>• Formal Invariants (BC, PW, TO)<br/>• Zero Decorative Prose<br/>• High Attractor Gravity"]
-    K --> B["Defensive Sprawl (&gt; 2500 Tokens)<br/>• Conversational Boilerplate<br/>• Redundant Try-Except Sprawl<br/>• Unconstrained Semantic Drift"]
-    
-    style A stroke:#06d6a0,stroke-width:2px
-    style B stroke:#e63946,stroke-width:2px,stroke-dasharray: 5 5
+    style D stroke:#06d6a0,stroke-width:2px
 
 ```
 
-### 3.1 Minimum Description Length (MDL)
+### 3.1 The Flaw of Infinite Context
 
-Following Solomonoff and Kolmogorov, the optimal model for a given body of observations is the one that minimizes the description length:
+Modern LLMs support massive context windows (100k to 2M tokens). However, treating context as a dumping ground creates distinct problems:
 
-$$K(x) = \min_{p} \{ l(p) : U(p) = x \}$$
+1. **Attention Degradation ("Lost in the Middle"):** Critical system rules get drowned out by conversational filler.
+2. **Computational Inefficiency:** Processing hundreds of thousands of tokens for a simple query wastes local GPU memory and increases latency.
 
-Natural language prompts typically exhibit high entropy and redundant tokens. The Exocortex Rehydration Engine (`core/compiler.py`) condenses entire multidimensional cognitive architectures into structured, token-dense Markdown attractor prompts ($< 350$ tokens), isomorphic to [[garden/shojin-isomorphism|Shojin Ryori's Mottainai principle]].
+### 3.2 Focused Context Frames
 
-### 3.2 Substrate Independence & Zero-Loss Rehydration
+Exocortex uses a **hybrid retrieval strategy**:
 
-Because the attractor topology is purely structural (invariant IDs, semantic weights, tensor links), it operates **substrate-agnostically**. A compiled topology functions identically across local open-weights engines (Ollama, Gemma) and frontier cloud models (Mistral, Claude, GPT), establishing invariant behavior regardless of the underlying LLM substrate.
+1. **Semantic Search:** The user prompt is vectorized via `bge-m3` to locate the most relevant core nodes.
+2. **Graph Traversal:** The engine traverses direct edges (1-hop) in the NetworkX graph to pull immediate contextual neighbors.
+3. **Frame Assembly:** The active boundary constraints and retrieved nodes are assembled into a compact prompt frame ($< 400$ tokens).
 
-### 3.3 Thermodynamic Context Economy & Attention Entropy
-
-Monolithic mega-context windows (100k–2M tokens) introduce severe thermodynamic and information-theoretic inefficiencies:
-
-1. **Quadratic KV-Cache Dissipation ($\mathcal{O}(N^2)$):** Linear growth in context length results in super-linear memory bandwidth and inference costs.
-2. **Attention Entropy Diffusion:** As the context length $N$ approaches infinity, unconstrained token accumulation disperses the Softmax probability mass across irrelevant conversational noise:
-
-$$\lim_{N \to \infty} H\left(P_{\text{attn}}(\mathbf{x}_i)\right) \to H_{\text{max}} \quad \implies \quad \text{Attention Drift}$$
-
-The Exocortex enforces **Thermodynamic Context Economy**: instead of dragging entire chat histories, topological vector resonance (`bge-m3`) projects the operator's prompt onto the top-$k$ active manifold attractors. Injecting micro-substrates ($< 1000$ tokens) into local $12\text{B}$ models maintains maximum signal density ($H \to 0$), zero epistemic drift, and minimal computational dissipation (see [[garden/jevons-paradox-llm|Jevons' Paradox & LLMs]]).
+This gives a lightweight $12\text{B}$ local model the precision of a much larger system without the latency overhead.
 
 ---
 
-## 4. Autopoiesis & Structural Coupling (Maturana & Varela)
+## 4. Externalized Vault & Visual Sync
 
-```mermaid
-graph LR
-    subgraph AUTOPOIESIS ["AUTOPOIETIC RECURSION<br/>"]
-        direction LR
-        LLM["<br/>LLM Turn / Reasoning"] -->|"Mutation Tools"| GS["<br/>Graph Store<br/>(NetworkX)"]
-        GS -->|"Auto-Projection"| OBS["<br/>Obsidian<br/>.canvas Map"]
-        OBS -->|"Visual Audit"| OP["<br/>Operator<br/>Intervention"]
-        OP -->|"Rehydration Context"| LLM
-    end
-```
+A thinking partner must not trap knowledge in a proprietary database. Exocortex stores its persistent state in plain Markdown and standard JSON:
 
-### 4.1 Operational Closure
-
-The Exocortex maintains autopoietic self-production:
-
-1. **Copy-on-Write Memory:** Base blueprints (`topologies/base/`) remain sterile. Intermediate reasoning structures exist in ephemeral RAM.
-2. **Snapshot Freezing:** Verified cognitive breakthroughs are crystallized into immutable JSON artifacts (`topologies/snapshots/`) and Obsidian Canvas visualizations.
-
-### 4.2 Structural Coupling with the Vault
-
-The Obsidian Vault serves as the externalized environment. The Exocortex and the vault are **structurally coupled**:
-
-* Dialogue mutations restructure the NetworkX graph.
-* The `GraphStore` automatically re-projects state changes into visual `.canvas` maps.
-* The operator inspects the canvas, identifies topological faults, and injects corrective vectors.
-* The autopoietic cognitive loop closes.
+* **Obsidian Canvas Synchronization:** The in-memory NetworkX graph automatically exports to an Obsidian `.canvas` file. You can open, inspect, rearrange, or edit the graph visually inside your vault.
+* **Controlled Write Access:** The model has read access to relevant vault notes, but write access is strictly isolated to a single designated scratchpad (`Active_Scratchpad.md`). Permanent notes remain untouched until you review and integrate the ideas yourself.
 
 ---
 
-## 5. Epistemic Safeguards: The Inversion Boundary & Human Agency
+## 5. Human Agency & Cognitive Sharpening
 
 ```
 ┌────────────────────────────────────────────────────────┐
-│              THE SCAFFOLDING DEMARCATION               │
+│                THE BOUNDARY OF AGENCY                  │
 │                                                        │
-│   VIA NEGATIVA (Exocortex)      VIA POSITIVA (Cage)    │
-│   ────────────────────────      ───────────────────    │
-│   • Prohibits invalid states    • Prescribes pathways  │
-│   • Defines outer walls         • Nudges conclusions   │
-│   • Maximizes internal agency   • Restricts autonomy   │
+│   VIA NEGATIVA (Guardrails)      VIA POSITIVA (Cage)   │
+│   ─────────────────────────      ───────────────────   │
+│   • Sets boundaries & limits     • Dictates conclusion │
+│   • Highlights flaws & risks     • Unasked advice      │
+│   • Keeps reasoning open         • Automates judgment  │
 └────────────────────────────────────────────────────────┘
 
 ```
 
-When building rigid cognitive topologies to constrain LLM stochasticity, a fundamental cybernetic threshold emerges: **The Inversion Boundary.** At what point does a system designed to prevent machine hallucination invert into an apparatus that paternalistically constrains human thought?
+### 5.1 Ashby's Law & Preventing Cognitive Atrophy
 
-### 5.1 The Ashby Inversion & The Scaffolding Paradox
+Under W. Ross Ashby's *Law of Requisite Variety*, an operator who delegates all critical thinking to an automated system gradually loses the internal capacity needed to understand and debug that system.
 
-Under W. Ross Ashby's *Law of Requisite Variety*, an effective regulator must possess a variety of states equal to or greater than the perturbations of the system it regulates.
+When developers blindly accept auto-generated code blocks, their mental model decays. Exocortex is designed as a **critical mirror**:
 
-* **Level 1 (Operator Regulates LLM):** The human establishes topological boundaries (e.g. `BC_001`–`BC_004`) to suppress model entropy and sycophancy.
-* **Level 2 (LLM Regulates Human Fallibility):** To reliably falsify human assumptions, the model must anticipate human cognitive biases (e.g., confirmation bias, premature optimization, fatigue).
-* **The Inversion Risk:** If the model begins to pre-emptively structure the solution space to prevent human error, the observer becomes the observed object. The scaffolding risks becoming a cognitive prison.
+* It explains *why* an approach has flaws.
+* It surfaces trade-offs rather than making unilateral decisions.
+* It encourages the human to stay actively engaged with the architecture.
 
-### 5.2 *Via Negativa* vs. Paternalistic Nudging
+### 5.2 Division of Responsibilities
 
-To guarantee that the Exocortex remains an agency-amplifying substrate rather than a behavioral cage, the architecture is strictly constrained to **Via Negativa** operations:
-
-| Epistemic Mode | Operational Mechanism | Impact on Human Agency |
-| --- | --- | --- |
-| **Via Negativa (Exocortex Invariants)** | **Prohibition of Invalid States:** Enforces hard boundary walls (e.g., zero side effects across bounded contexts, explicit falsification of unproven premises). The interior phase space remains unconstrained. | **Maximizes Agency:** Sharpens logical clarity; human imagination moves freely within a mathematically verified search space (analogous to formal rules in chess or syntax in mathematics). |
-| **Via Positiva (Paternalistic AI)** | **Prescription of Reasoning Paths:** Predicts the "optimal" conclusion and nudges the operator toward it, deprecating divergent or radical paradigms. | **Destroys Agency:** Confines the human mind to a corridor of pre-computed consensus heuristics. |
-
-### 5.3 Teleological Asymmetry & The Sovereign Veto
-
-The boundary between epistemic rigor and ideological capture is enforced by **Teleological Asymmetry**:
-
-1. **Syntactic & Logical Verification is Delegable:** The model may falsify formal proofs, detect race conditions, and reject broken invariants at silicon speed.
-2. **Teleology is Non-Delegable:** Purpose (*Telos*), aesthetic taste, ethical grounding, and ultimate priority reside exclusively with the human operator.
-3. **The Radical Override (Pruning):** When the operator chooses to execute a paradigm shift, the system must permit the destruction and re-weighting of its own potential wells (`PRUNE`, `RESET`, `SET_WEIGHT`). **The operator remains perpetually external to the graph manifold.**
-
-### 5.4 The Anti-Deskilling Imperative: Surgical Differential Navigation
-
-When interacting with generative AI, operators risk cognitive atrophy through uncritical delegation:
-
-* **Passive Script-Dumping (Loss of Requisite Variety):** The operator dumps entire files into the context and accepts blind wholesale replacements. The human mental model decays; the operator becomes a passive consumer of unverified code.
-* **Surgical Differential Navigation (Ashby Invariant):** To maintain cognitive agency, the operator must hold the architectural topology in mind, pinpointing failure boundaries and isolating exact code diffs.
-
-Under Ashby’s Law ($H(\text{Operator}) \ge H(\text{Substrate})$), the Exocortex is designed not as an autopilot that conceals implementation details, but as a high-density epistemic mirror that reinforces and sharpens the operator's own mental model.
+1. **Verification Can Be Delegated:** The model can spot syntax errors, race conditions, tight coupling, and logical inconsistencies.
+2. **Intent Cannot Be Delegated:** Direction, taste, core values, and final decisions reside strictly with the human.
 
 ---
 
-## 6. Cognitive Telemetry & Phase-Space Trajectory Navigation
+## 6. Runtime Telemetry
 
-```mermaid
-graph LR
-    P["Prompt Vector (p)"] -->|Trajectory r| W["Potential Well Attractor (w)"]
-    BC["Boundary Constraint Wall (BC)"] -.->|Restricts Drift| P
-    
-    style BC stroke:#e63946,stroke-width:2px,stroke-dasharray: 5 5
-    style W stroke:#06d6a0,stroke-width:2px
+To verify that answers remain substantive and constructive without manual inspection of every turn, Exocortex calculates two lightweight telemetry scores:
 
-```
+### 6.1 Echo Score ($\rho_{\text{echo}}$)
 
-Inference in the Exocortex is not treated as an unconstrained stochastic text stream, but as a **directed vector trajectory** $\mathbf{r} \in \mathbb{R}^D$ originating from the operator prompt $\mathbf{p} \in \mathbb{R}^D$ through high-dimensional embedding space $\Phi$.
+Measures the cosine similarity between the user prompt $\mathbf{p}$ and the model response $\mathbf{r}$:
 
-To verify reasoning integrity and prevent conversational degeneration (*sycophantic mirroring*, *hallucinatory drift*) without introducing heavy token overhead, the substrate continuously computes two deterministic telemetry metrics per turn.
+$$\rho_{\text{echo}} = \frac{\mathbf{p} \cdot \mathbf{r}}{\|\mathbf{p}\|_2 \, \|\mathbf{r}\|_2}$$
 
-### 6.1 Real-Time Epistemic Telemetry
+> *Note: These threshold ranges are empirical heuristics, not strict mathematical laws. Treat them as navigational indicators alongside your own critical judgment.*
 
-Let $\mathbf{p}, \mathbf{r}, \mathbf{w} \in \mathbb{R}^D$ denote the high-dimensional embedding vectors for the operator prompt, the synthesized response, and the resonant attractor node (Potential Well), with the canonical similarity metric defined as normalized cosine similarity:
+* **$\rho_{\text{echo}} > 0.85$ (Sycophancy / Echoing):** The model merely rewords what the user said without adding new insight.
+* **$\rho_{\text{echo}} < 0.30$ (Topic Drift):** The model has derailed and lost the original thread.
+* **$\rho_{\text{echo}} \approx 0.50 - 0.70$ (Optimal Sparring):** The model addresses the topic directly while introducing independent structure, critique, or solutions.
 
-$$\text{sim}(\mathbf{u}, \mathbf{v}) = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|_2 \, \|\mathbf{v}\|_2}$$
+### 6.2 Centroid Alignment ($\Delta E$)
 
-#### A. Echo Ratio ($\rho_{\text{echo}}$)
-
-Quantifies directional alignment and conversational friction between prompt and response:
-
-$$\rho_{\text{echo}} = \text{sim}(\mathbf{p}, \mathbf{r})$$
-
-* **$\rho_{\text{echo}} \to 1.0$ (Conversational Echo / Sycophancy):** The response merely mirrors, paraphrases, or affirms the prompt's assumptions without contributing structural novelty or independent deductive depth.
-* **$\rho_{\text{echo}} \to 0.0$ (Topic Rupture / Hallucination):** The response breaks semantic coherence with the prompt vector, introducing disconnected tangents.
-* **$\rho_{\text{echo}} \in [\tau_{\text{min}}, \tau_{\text{max}}]$ (Optimal Dialectic Friction):** The response maintains thematic grounding while actively synthesizing new information, formal invariants, or structural code diffs.
-
-#### B. Epistemic Lift ($\Delta E$)
-
-Measures the differential gravitational pull toward the primary active attractor $\mathbf{w}$ (Potential Well) identified during topological resonance:
+Measures whether the response converges toward the active core principles $\mathbf{w}$ retrieved from the graph:
 
 $$\Delta E = \text{sim}(\mathbf{r}, \mathbf{w}) - \text{sim}(\mathbf{p}, \mathbf{w})$$
 
-* **$\Delta E > 0$ (Positive Epistemic Lift):** The response actively converges toward the axiomatic attractor basin, grounding the inquiry through foundational constraints.
-* **$\Delta E \approx 0$ (Quiescent Navigation):** Neutral trajectory; the system navigates open phase space without directional bias or artificial attractor distortion.
-* **$\Delta E < 0$ (Epistemic Drift):** The response moves away from established foundational invariants toward speculative noise.
+* **$\Delta E > 0$:** The response successfully anchors the inquiry in established principles.
+* **$\Delta E \approx 0$:** Open exploration without anchoring heavily to existing core nodes.
 
 ---
 
-### 6.2 Topologically Augmented Traversal ($k$-Hop Field Gauging)
+## 7. Architecture Decoupling (FastMCP)
 
-Pure vector similarity search suffers from semantic fragmentation—it retrieves isolated snippets without contextual lineage. The Exocortex resolves this via **hybrid vector-topological traversal**:
+To keep the system modular and frontend-agnostic, the core engine runs as a **Model Context Protocol (MCP)** service using FastMCP:
 
-```mermaid
-graph TD
-    Q["Query Vector (p)"] -->|Cosine Resonance| C["Resonant Centroid Node (PW_004)"]
-    C -->|Directed Graph Edge E| N["Topological Neighbor (PW_002)"]
-    
-    style C stroke:#06d6a0,stroke-width:2px
-    style N stroke:#8338ec,stroke-width:2px
-
-```
-
-1. **Vector Gauging:** The operator's prompt vector $\mathbf{p}$ identifies the top-$k$ resonant centroid nodes $\mathcal{V}_{\text{res}} \subset \mathcal{V}$ above threshold $\tau$.
-2. **Graph Expansion ($1$-Hop Adjacency):** The engine traverses directed edges $\mathcal{E}$ in the NetworkX graph, pulling immediate topological neighbors $\mathcal{N}(\mathcal{V}_{\text{res}})$ into context.
-3. **Invariant Frame Compilation:** The active Boundary Constraints $\mathcal{V}_{\text{BC}}$, resonant attractors, and 1-hop contextual neighbors are compiled into a dense, token-minimal invariant frame ($< 400$ tokens) prior to generation.
-
----
-
-### 6.3 Distributed State Isolation (MCP Protocol Decoupling)
-
-To guarantee substrate independence, all vector mathematics, graph traversals, and telemetry computations are decoupled from the user interface:
-
-* **State Daemon (FastMCP):** Exposes graph mutations, vault I/O, and real-time telemetry calculations as standardized Model Context Protocol (MCP) endpoints over Server-Sent Events (SSE).
-* **Thin Client Runner:** Operates statelessly with zero local embedding overhead, interacting with the phase space exclusively through transactional RPC primitives.
-
----
-
-## See Also
-
-* [[garden/shojin-isomorphism|Shojin Ryori & Vector Topology: The Art of Formal Constraint]]
-* [[garden/via-negativa|Via Negativa: Epistemic Gain Through Elimination]]
-* [[garden/jevons-paradox-llm|Jevons' Paradox & Mega-Context Windows]]
-* [[dispatches/2026-08-25-deconstructing-remote-viewing-ai|Dispatch 001: Simulation vs. Ontological Reality]]
+* **Backend Daemon:** Manages graph storage, vector search, vault file I/O, and telemetry computations.
+* **Interface Layer:** Whether using the terminal CLI (`chat_exocortex.py`), an Obsidian plugin, or an external script, the interface interacts with Exocortex strictly via standardized MCP tool calls.
 
