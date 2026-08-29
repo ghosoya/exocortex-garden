@@ -104,7 +104,7 @@ The model does not edit markdown notes at random. Instead, it maintains and upda
 
 * **`exocortex_gauge_field`**: Queries the graph using semantic similarity to retrieve relevant constraints and context before generating a response.
 * **`exocortex_imprint_field`**: Adds a new structured concept, rule, or working state to the JSON graph, creates directed links to existing nodes, and computes its vector embedding (`bge-m3`).
-* **`exocortex_mutate_phase_space`**: Updates weights, refines payloads, decays obsolete connections, or prunes invalidated hypotheses to keep the graph clean.
+* **`exocortex_mutate_phase_space`**: Updates node weights, refines payloads, decays obsolete nodes, or prunes invalidated hypotheses to keep the graph clean.
 
 ---
 
