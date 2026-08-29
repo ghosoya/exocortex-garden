@@ -25,8 +25,7 @@ Standard commercial models are heavily tuned to be agreeable, polite, and accomm
 * **Cognitive Fragility:** If tools never push back, users gradually lose the habit of rigorous self-criticism and stress-testing.
 * **Parasocial Substitution:** Simulating artificial affection, deference, or synthetic companionship creates dependencies and monetizes the avoidance of genuine human interaction.
 
-Exocortex rejects the role of an agreeable digital servant. It is designed to act as an objective, emotionally sober **sounding board** that points out trade-offs, questions assumptions, and challenges flawed premises before generating answers.
-
+Exocortex rejects the role of an agreeable digital servant. It is designed to act as a candid, emotionally sober sounding board that points out trade-offs, questions assumptions, and challenges flawed premises before generating answers.
 ---
 
 ## 2. Interaction Modes
