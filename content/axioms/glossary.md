@@ -94,4 +94,4 @@ Exocortex draws practical concepts from systems theory, cybernetics, information
 
 ### 12. Dynamic Graph Maintenance
 * **Conceptual Origin:** Graph databases and dynamic knowledge management.
-* **Role in Exocortex:** Managing memory explicitly via structured tool calls (`imprint`, `mutate`, `prune`). The model can store new domain rules, adjust connection weights, or prune outdated working notes directly inside the JSON-backed knowledge graph, with real-time visual synchronization to an Obsidian `.canvas` file.
+* **Role in Exocortex:** Managing memory explicitly via structured tool calls (`imprint`, `mutate`, `prune`). The model can store new domain rules, adjust node weights, or prune outdated working notes directly inside the JSON-backed knowledge graph, with real-time visual synchronization to an Obsidian `.canvas` file.
