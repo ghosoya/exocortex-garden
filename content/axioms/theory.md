@@ -51,7 +51,7 @@ Exocortex follows J.C.R. Licklider’s vision of **Man-Computer Symbiosis**:
 
 Models trained via RLHF are tuned to be polite and agreeable. In technical work, this manifests as **sycophancy**: the model validates flawed designs, ignores bad assumptions, and generates plausible-sounding rationalizations for fragile code.
 
-Exocortex counters this by injecting explicit **Boundary Constraints (`BC`)**. The system is instructed to act as an objective sounding board: point out missing error handling, highlight coupling issues, and challenge vague premises before answering.
+Exocortex counters this by injecting explicit **Boundary Constraints (`BC`)**. The system is instructed to act as a candid sounding board: point out missing error handling, highlight coupling issues, and challenge vague premises before answering.
 
 ### 1.3 Popperian Demarcation: Defining Systems by What They Forbid
 
