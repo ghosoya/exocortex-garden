@@ -51,7 +51,7 @@ Exocortex follows J.C.R. Licklider’s vision of **Man-Computer Symbiosis**:
 
 Models trained via RLHF are tuned to be polite and agreeable. In technical work, this manifests as **sycophancy**: the model validates flawed designs, ignores bad assumptions, and generates plausible-sounding rationalizations for fragile code.
 
-Exocortex counters this by injecting explicit **Boundary Constraints (`BC`)**. The system is instructed to act as a candid sounding board: point out missing error handling, highlight coupling issues, and challenge vague premises before answering.
+Exocortex counters this by injecting explicit **Constraints (`CST`)**. The system is instructed to act as a candid sounding board: point out missing error handling, highlight coupling issues, and challenge vague premises before answering.
 
 ### 1.3 Popperian Demarcation: Defining Systems by What They Forbid
 
@@ -62,7 +62,7 @@ In Karl Popper's *The Logic of Scientific Discovery* (1934), a theory is only as
 We apply this directly to architecture and prompts:
 
 * **Unfalsifiable Sprawl:** Systems without clear boundaries accumulate defensive bloat, broad `catch-all` exception handlers, and bloated interfaces that attempt to anticipate every hypothetical edge case.
-* **Via Negativa (Constraint-First Design):** Clean systems define hard boundaries. A boundary constraint explicitly forbids unwanted behavior (e.g., "no side effects inside pure calculation functions", "no unseasonal produce in recipes"). The solution space inside those walls remains completely open.
+* **Via Negativa (Constraint-First Design):** Clean systems define hard boundaries. A constraint explicitly forbids unwanted behavior (e.g., "no side effects inside pure calculation functions", "no unseasonal produce in recipes"). The solution space inside those walls remains completely open.
 
 ---
 
@@ -73,38 +73,41 @@ Instead of maintaining a flat, unstructured history, Exocortex models domain kno
 ```mermaid
 graph TD
     subgraph GRAPH ["Knowledge Graph (NetworkX)"]
-        BC["Boundary Constraint (BC)<br/>Hard rules & invariants"]
-        TO["Action Guideline (TO)<br/>Transformation & refactoring rules"]
-        PW["Core Concept (PW)<br/>Foundational domain knowledge"]
+        CST["Constraint (CST)<br/>Inviolable guardrails & boundaries"]
+        CNC["Concept (CNC)<br/>Foundational domain principles"]
+        RUL["Rule (RUL)<br/>Action guidelines & heuristics"]
+        STA["State (STA)<br/>Working context & hypotheses"]
         
-        TO -->|Guided by| PW
-        BC -->|Guards| PW
+        CST -->|Governs| CNC
+        RUL -->|Guided by| CNC
+        STA -->|Contextualizes| CNC
     end
     
-    style BC stroke:#e63946,stroke-width:2px
-    style PW stroke:#06d6a0,stroke-width:2px
-    style TO stroke:#8338ec,stroke-width:2px
+    style CST stroke:#e63946,stroke-width:2px
+    style CNC stroke:#06d6a0,stroke-width:2px
+    style RUL stroke:#8338ec,stroke-width:2px
+    style STA stroke:#457b9d,stroke-width:2px
 
 ```
 
 ### 2.1 Node Taxonomy
 
-The graph categorizes concepts into four pragmatic types:
+The graph categorizes concepts into four pragmatic types with canonical prefixes:
 
-| Type | Name | Role | Practical Example |
+| Prefix | Node Type | Role | Practical Example |
 | --- | --- | --- | --- |
-| **`BC`** | **Boundary Constraint** | Invariant / Rule | "Functions must not mix database writes with network I/O." |
-| **`PW`** | **Core Concept** | Foundation / Anchor | "Single Responsibility Principle" or "Vegetable Dashi Base". |
-| **`TO`** | **Action Guideline** | Transformation rule | "Decouple via interfaces" or "Dry-toast buckwheat before simmering". |
-| **`PST`** | **Working State** | Active task context | Current hypothesis, active review state, or temporary task marker. |
+| **`CST_`** | **Constraint** | Inviolable invariant / boundary | "Functions must not mix database writes with network I/O." |
+| **`CNC_`** | **Concept** | Foundational principle / model | "Single Responsibility" or "Vegetable Dashi Base". |
+| **`RUL_`** | **Rule** | Action guideline / heuristic | "Decouple via interfaces" or "Dry-toast buckwheat before simmering". |
+| **`STA_`** | **State** | Working context / checkpoint | Active code review hypothesis or temporary task marker. |
 
 ### 2.2 Graph Maintenance & Tool Control
 
 The model does not edit markdown notes at random. Instead, it maintains and updates this structured mental model by reading and mutating the underlying knowledge graph (in-memory NetworkX state, persisted to JSON and synced to an Obsidian `.canvas`) via explicit tool calls:
 
-* **`exocortex_gauge_field`**: Queries the graph using semantic similarity to retrieve relevant constraints and context before generating a response.
-* **`exocortex_imprint_field`**: Adds a new structured concept, rule, or working state to the JSON graph, creates directed links to existing nodes, and computes its vector embedding (`bge-m3`).
-* **`exocortex_mutate_phase_space`**: Updates node weights, refines payloads, decays obsolete nodes, or prunes invalidated hypotheses to keep the graph clean.
+* **`exocortex_query_graph`**: Searches the active graph using cosine vector similarity (`bge-m3`) and 1-hop traversal to retrieve relevant concepts and constraints before answering.
+* **`exocortex_create_node`**: Autonomously materializes a new structured node (`Constraint`, `Concept`, `Rule`, or `State`), embeds its payload, and automatically links it to related existing nodes.
+* **`exocortex_mutate_node`**: Updates node payloads, calibrates relevance weights (`STRENGTHEN`, `DECAY`), or prunes obsolete working hypotheses to keep the graph clean.
 
 ---
 
@@ -133,10 +136,10 @@ Modern LLMs support massive context windows (100k to 2M tokens). However, treati
 Exocortex uses a **hybrid retrieval strategy**:
 
 1. **Semantic Search:** The user prompt is vectorized via `bge-m3` to locate the most relevant core nodes.
-2. **Graph Traversal:** The engine traverses direct edges (1-hop) in the NetworkX graph to pull immediate contextual neighbors.
-3. **Frame Assembly:** The active boundary constraints and retrieved nodes are assembled into a compact prompt frame ($< 400$ tokens).
+2. **Graph Traversal:** The engine traverses direct edges (1-hop) in the NetworkX graph to pull immediate contextual neighbors without explicit prompting.
+3. **Frame Assembly:** The active constraints and retrieved nodes are assembled into a compact prompt frame ($< 400$ tokens).
 
-This gives a lightweight $12\text{B}$ local model the precision of a much larger system without the latency overhead.
+This gives a lightweight $12\text{B}$ local model the precision of a much larger system without latency overhead.
 
 ---
 
@@ -144,22 +147,22 @@ This gives a lightweight $12\text{B}$ local model the precision of a much larger
 
 A thinking partner must not trap knowledge in a proprietary database. Exocortex stores its persistent state in plain Markdown and standard JSON:
 
-* **Obsidian Canvas Synchronization:** The in-memory NetworkX graph automatically exports to an Obsidian `.canvas` file. You can open, inspect, rearrange, or edit the graph visually inside your vault.
+* **Obsidian Canvas Synchronization:** The in-memory NetworkX graph automatically exports to an Obsidian `.canvas` file. You can inspect, rearrange, or edit the graph visually inside your vault in real time.
 * **Controlled Write Access:** The model has read access to relevant vault notes, but write access is strictly isolated to a single designated scratchpad (`Active_Scratchpad.md`). Permanent notes remain untouched until you review and integrate the ideas yourself.
 
 ---
 
 ## 5. Human Agency & Cognitive Sharpening
 
-```
+```text
 ┌────────────────────────────────────────────────────────┐
 │                THE BOUNDARY OF AGENCY                  │
 │                                                        │
-│   VIA NEGATIVA (Guardrails)      VIA POSITIVA (Cage)   │
-│   ─────────────────────────      ───────────────────   │
-│   • Sets boundaries & limits     • Dictates conclusion │
-│   • Highlights flaws & risks     • Unasked advice      │
-│   • Keeps reasoning open         • Automates judgment  │
+│   VIA NEGATIVA (Guardrails)     VIA POSITIVA (Cage)    │
+│   ─────────────────────────     ───────────────────    │
+│   • Sets boundaries & limits    • Dictates conclusion  │
+│   • Highlights flaws & risks    • Unasked advice       │
+│   • Keeps reasoning open        • Automates judgment   │
 └────────────────────────────────────────────────────────┘
 
 ```
@@ -197,14 +200,14 @@ $$\rho_{\text{echo}} = \frac{\mathbf{p} \cdot \mathbf{r}}{\|\mathbf{p}\|_2 \, \|
 * **$\rho_{\text{echo}} < 0.30$ (Topic Drift):** The model has derailed and lost the original thread.
 * **$\rho_{\text{echo}} \approx 0.50 - 0.70$ (Optimal Sparring):** The model addresses the topic directly while introducing independent structure, critique, or solutions.
 
-### 6.2 Centroid Alignment ($\Delta E$)
+### 6.2 Epistemic Lift ($\Delta E$)
 
-Measures whether the response converges toward the active core principles $\mathbf{w}$ retrieved from the graph:
+Measures whether the response actively moved closer to the ground-truth principles $\mathbf{c}$ activated in the knowledge graph:
 
-$$\Delta E = \text{sim}(\mathbf{r}, \mathbf{w}) - \text{sim}(\mathbf{p}, \mathbf{w})$$
+$$\Delta E = \text{sim}(\mathbf{r}, \mathbf{c}) - \text{sim}(\mathbf{p}, \mathbf{c})$$
 
-* **$\Delta E > 0$:** The response successfully anchors the inquiry in established principles.
-* **$\Delta E \approx 0$:** Open exploration without anchoring heavily to existing core nodes.
+* **$\Delta E > 0$:** The response grounded its reasoning in established graph principles rather than generating unconstrained completions.
+* **$\Delta E \approx 0$:** Open exploration or general problem-solving without heavy reliance on active concept nodes.
 
 ---
 
@@ -213,5 +216,5 @@ $$\Delta E = \text{sim}(\mathbf{r}, \mathbf{w}) - \text{sim}(\mathbf{p}, \mathbf
 To keep the system modular and frontend-agnostic, the core engine runs as a **Model Context Protocol (MCP)** service using FastMCP:
 
 * **Backend Daemon:** Manages graph storage, vector search, vault file I/O, and telemetry computations.
-* **Interface Layer:** Whether using the terminal CLI (`chat_exocortex.py`), an Obsidian plugin, or an external script, the interface interacts with Exocortex strictly via standardized MCP tool calls.
+* **Interface Layer:** Whether using the terminal CLI (`chat_exocortex.py`), an Obsidian plugin, or an external agent, the interface interacts with Exocortex strictly via standardized MCP tool calls.
 

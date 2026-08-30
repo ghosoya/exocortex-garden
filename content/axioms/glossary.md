@@ -21,42 +21,38 @@ Exocortex draws practical concepts from systems theory, cybernetics, information
 
 ---
 
-### 2. Semantic Similarity
+### 2. Semantic Similarity & Telemetry
 * **Conceptual Origin:** Vector geometry. The normalized dot product (cosine similarity) measures the directional alignment between two vectors on a scale from $-1.0$ to $+1.0$:
   $$\text{sim}(\mathbf{u}, \mathbf{v}) = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|_2 \, \|\mathbf{v}\|_2}$$
 * **Role in Exocortex:** Used for two core mechanisms:
   1. *Retrieval:* Identifying the most relevant nodes in the knowledge graph for a given user prompt.
-  2. *Telemetry:* Calculating the **Echo Score** ($\rho_{\text{echo}}$) between user prompt and model response to detect conversational mirroring or topic drift.
+  2. *Runtime Telemetry:* Calculating the **Echo Score** ($\rho_{\text{echo}}$) between prompt and response to detect conversational mirroring, and measuring **Epistemic Lift** ($\Delta E$) to verify that responses actively ground themselves in active knowledge nodes.
 
 ---
 
-> **A Note on Node Taxonomy:** The Exocortex graph uses naming conventions borrowed from dynamical systems (`PotentialWell`, `BoundaryConstraint`, `TrajectoryOperator`, `PhaseSpaceTrace`) as pragmatic design metaphors to structure knowledge and memory.
+> **Node Taxonomy in v1.5.0:** The Exocortex knowledge graph organizes domain memory into four clear, software-native entity types with canonical prefixes (`CST_`, `CNC_`, `RUL_`, `STA_`).
 
-### 3. Core Concepts (`PotentialWell` / `PW`)
-
-* **Conceptual Origin:** Systems theory and physics (potential wells / attractor basins). Represents stable equilibrium states toward which dynamic processes naturally settle.
-* **Role in Exocortex:** Foundational domain definitions and core architectural principles in the knowledge graph. These nodes anchor the model's reasoning in verified domain knowledge (e.g., *Ingredient Purity* in culinary design, or *Simplicity over Cleverness* in software architecture).
-
----
-
-### 4. Boundary Constraints (`BoundaryConstraint` / `BC`)
-
-* **Conceptual Origin:** Constraint satisfaction, invariant design, and Karl Popper’s criterion of demarcation (a robust system or theory is defined by what it strictly prohibits).
-* **Role in Exocortex:** Invariant guardrails that explicitly forbid unwanted states or common failure modes (e.g., mixing database queries with network I/O, using out-of-season produce, or blindly flattering flawed user assumptions). The reasoning space inside these boundaries remains completely open.
+### 3. Constraints (`Constraint` / `CST_`)
+* **Conceptual Origin:** Invariant design, constraint satisfaction, and Karl Popper’s criterion of demarcation (a robust system is defined by what it strictly prohibits).
+* **Role in Exocortex:** Inviolable guardrails and negative boundaries (e.g., *Side Effect Isolation*, *Intellectual Honesty*, or seasonal culinary restrictions). Constraints are injected statically into the system prompt to prevent bad architecture and sycophantic agreement. The solution space inside these boundaries remains completely open.
 
 ---
 
-### 5. Action Guidelines (`TrajectoryOperator` / `TO`)
-
-* **Conceptual Origin:** State-transition systems and process workflows. Operators govern how a system moves from an initial state toward a desired target state.
-* **Role in Exocortex:** Concrete transformation patterns and refactoring heuristics stored in the graph (e.g., *Defensive Design* patterns, extraction of interfaces, or gentle cooking techniques).
+### 4. Concepts (`Concept` / `CNC_`)
+* **Conceptual Origin:** Domain modeling, ontology engineering, and axiomatic foundations.
+* **Role in Exocortex:** Foundational domain definitions and core principles in the knowledge graph. These nodes anchor the model's reasoning in verified domain knowledge (e.g., *Single Responsibility Principle* in software design, or *Ingredient Purity* in regional cooking).
 
 ---
 
-### 6. Working States (`PhaseSpaceTrace` / `PST`)
+### 5. Rules (`Rule` / `RUL_`)
+* **Conceptual Origin:** Expert systems, heuristics, and procedural refactoring patterns.
+* **Role in Exocortex:** Concrete action guidelines and transformation heuristics stored in the graph (e.g., *Defensive Design*, extracting interfaces, or gentle cooking techniques). They define *how* principles are translated into practical execution.
 
-* **Conceptual Origin:** State tracing and execution history in distributed systems.
-* **Role in Exocortex:** Ephemeral graph nodes capturing active task contexts, temporary hypotheses, review checkpoints, or runtime notes. Unlike permanent boundary constraints, traces are designed to be updated, archived, or pruned as tasks finish.
+---
+
+### 6. States (`State` / `STA_`)
+* **Conceptual Origin:** State machines, execution contexts, and task tracking.
+* **Role in Exocortex:** Ephemeral graph nodes capturing active working contexts, temporary hypotheses, code review checkpoints, or session markers. Unlike permanent constraints or domain concepts, states are updated, archived, or pruned as workflows progress.
 
 ---
 
@@ -94,4 +90,9 @@ Exocortex draws practical concepts from systems theory, cybernetics, information
 
 ### 12. Dynamic Graph Maintenance
 * **Conceptual Origin:** Graph databases and dynamic knowledge management.
-* **Role in Exocortex:** Managing memory explicitly via structured tool calls (`imprint`, `mutate`, `prune`). The model can store new domain rules, adjust node weights, or prune outdated working notes directly inside the JSON-backed knowledge graph, with real-time visual synchronization to an Obsidian `.canvas` file.
+* **Role in Exocortex:** Managing memory explicitly via standardized MCP tool calls:
+  * `exocortex_query_graph`: Retrieves active concepts and constraints.
+  * `exocortex_create_node`: Autonomously adds and links new nodes in the NetworkX graph.
+  * `exocortex_mutate_node`: Updates weights, recalibrates, or prunes obsolete nodes.
+  All graph mutations synchronize in real time to an interactive Obsidian `.canvas` file.
+
