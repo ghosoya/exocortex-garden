@@ -102,6 +102,6 @@ Restraint is not a compromise imposed by weak hardware; it is a conscious archit
 
 ## See Also
 
-* [[architecture|System Architecture & Foundations]]
-* [[glossary|Glossary & Conceptual Foundations]]
-* [Showcase 02: Regional Shojin Recipe Benchmark](https://www.google.com/search?q=https://github.com/ghosoya/exocortex/blob/main/docs/topologies/02_regional_shojin_recipe.md)
+* [[axioms/theory|Mental Models & Knowledge Graphs]]
+* [[axioms/ethics|Human Agency & Sparring Principles]]
+* [Showcase 02: Regional Shojin Recipe Benchmark](https://github.com/ghosoya/exocortex/blob/main/docs/topologies/02_regional_shojin_recipe.md)
