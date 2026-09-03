@@ -211,10 +211,15 @@ $$\Delta E = \text{sim}(\mathbf{r}, \mathbf{c}) - \text{sim}(\mathbf{p}, \mathbf
 
 ---
 
-## 7. Architecture Decoupling (FastMCP)
+## 7. Tool Protocol & Anti-Deskilling (FastMCP)
 
-To keep the system modular and frontend-agnostic, the core engine runs as a **Model Context Protocol (MCP)** service using FastMCP:
+Rather than building an opaque autonomous agent that acts in the background, Exocortex exposes its core capabilities strictly as standardized **Model Context Protocol (MCP)** tools via FastMCP. This architectural boundary enforces human agency at the runtime level:
 
-* **Backend Daemon:** Manages graph storage, vector search, vault file I/O, and telemetry computations.
-* **Interface Layer:** Whether using the terminal CLI (`chat_exocortex.py`), an Obsidian plugin, or an external agent, the interface interacts with Exocortex strictly via standardized MCP tool calls.
+1. **Atomic & Visible Actions:**  
+   The model does not execute silent background loops. Every action—querying the graph, retrieving a note, or proposing a node mutation—is an explicit, typed tool call surfaced in real time to the operator.
+2. **Strict Quarantined Writes:**  
+   The model has broad read access across your notes, but write access is strictly quarantined to a single file (`Active_Scratchpad.md`). It cannot silently overwrite repository code or vault notes. Final integration remains 100% manual and human.
+3. **Synchronized External Memory:**  
+   When the model calls `exocortex_create_node` or `exocortex_mutate_node`, the change is immediately written to the active NetworkX graph and projected into your Obsidian `.canvas`. The evolving mental model remains visual, inspectable, and editable by the operator at all times.
 
+FastMCP transforms the LLM from an uninspected autopilot into an auditable thinking instrument on your dashboard.

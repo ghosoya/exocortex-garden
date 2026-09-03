@@ -94,7 +94,7 @@ The Zen concept of *Mottainai* (勿体無い) expresses regret over waste. Radis
 In LLM engineering, **tokens are produce**:
 
 * **Dumping context is sloppy cooking:** Flooding an LLM with 50,000 tokens of conversational filler, raw dumps, and defensive boilerplate degrades model attention ("lost in the middle") and inflates inference latency.
-* **Treating context with respect:** Passing a compact, highly structured context frame (< 400 tokens) of active constraints and connected nodes keeps a local 12B model sharply focused, predictable, and fast—preventing attention degradation without needing massive parameter counts to to filter out conversational noise.
+* **Treating context with respect:** Passing a compact, highly structured context frame (< 400 tokens) of active constraints and connected nodes keeps a local 12B model sharply focused, predictable, and fast—preventing attention degradation without needing massive parameter counts to filter out conversational noise.
 
 Restraint is not a compromise imposed by weak hardware; it is a conscious architectural discipline.
 
